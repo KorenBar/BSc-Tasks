@@ -2,7 +2,7 @@
  * Tester for task 13 on course no. 20441 (2020)
  * 
  * @author Koren Bar
- * @version 2020.11.21-4
+ * @version 2020.11.21-5
  */
 public class PolygonTester {
 
@@ -74,16 +74,18 @@ public class PolygonTester {
         // toString
         String errTip = "toString method is incorrect, FIX IT!";
         boolean toStringIsCorrect = false;
-        if (checkCorrectness("Polygon.toString", "The polygon has 5 vertices:\n((6.0,5.0),(5.0,7.0),(3.0,8.0),(1.0,6.0),(2.0,5.0),(4.0,4.0))", polyWith6.toString(), errTip))
+        if (checkCorrectness("Polygon.toString", "The polygon has 6 vertices:\n((6.0,5.0),(5.0,8.0),(3.0,8.0),(1.0,6.0),(2.0,5.0),(4.0,4.0))", polyWith6.toString(), errTip))
             if(checkCorrectness("Polygon.toString", "The polygon has 0 vertices.", emptyPoly.toString(), "You should return the expected string above if there is no vertices (when the _vertices array is empty)."))
                 toStringIsCorrect = true;
 
         // highestVertex
-        errTip = "If your Point.equals is correct then check your highestVertex method!";
+        errTip = "CHECK THAT METHOD!";
+        boolean highestVertexIsCorrect = false;
         if(checkCorrectness("Polygon.highestVertex", new Point(3, 8), fullPoly.highestVertex(), errTip))
             if(checkCorrectness("Polygon.highestVertex", new Point(3, 7), polyWith3.highestVertex(), errTip))
                 if(checkCorrectness("Polygon.highestVertex", new Point(5, 8), polyWith6.highestVertex(), errTip))
-                    checkCorrectness("Polygon.highestVertex", null, emptyPoly.highestVertex(), "You should return null if there is no vertices (when the _vertices array is empty).");
+                    if (checkCorrectness("Polygon.highestVertex", null, emptyPoly.highestVertex(), "You should return null if there is no vertices (when the _vertices array is empty)."))
+                        highestVertexIsCorrect = true;
 
         // calcPerimeter
         errTip = "CHECK THAT METHOD! (Check this tester also :p)";
@@ -110,40 +112,48 @@ public class PolygonTester {
                 checkCorrectness("Polygon.isBigger", true, polyWith6.isBigger(polyWith3), errTip);
 
         // findVertex
-        errTip = "If your Point.equals is correct then check the findVertex method!";
+        errTip = "CHECK THAT METHOD!";
         if(checkCorrectness("Polygon.findVertex", 7, fullPoly.findVertex(new Point(5, 2)), errTip))
             if(checkCorrectness("Polygon.findVertex", 5, polyWith6.findVertex(new Point(4, 4)), errTip))
                 checkCorrectness("Polygon.findVertex", -1, polyWith3.findVertex(new Point(0, 0)), "You have to return -1 if the given point parameter doesn't exists.");
 
         // getNextVertex
-        errTip = "If your Point.equals is correct then check the getNextVertex method!";
-        if (checkCorrectness("Polygon.getNextVertex", new Point(2, 3), fullPoly.getNextVertex(new Point(5, 2)), "If your Point.equals is correct then check the getNextVertex method!"))
+        errTip = "CHECK THAT METHOD!";
+        boolean getNextVertexIsCorrect = false;
+        if (checkCorrectness("Polygon.getNextVertex", new Point(2, 3), fullPoly.getNextVertex(new Point(5, 2)), errTip))
             if (checkCorrectness("Polygon.getNextVertex", null, polyWith3.getNextVertex(new Point(0, 0)), "You should return null in case of not existing given point parameter."))
                 if (checkCorrectness("Polygon.getNextVertex", new Point(6, 5), polyWith6.getNextVertex(new Point(4, 4)), errTip))
                     if (checkCorrectness("Polygon.getNextVertex", new Point(3, 9), polyWith1.getNextVertex(new Point(3, 9)), errTip))
-                        checkCorrectness("Polygon.getNextVertex", null, polyWith1.getNextVertex(new Point(3, 5)), "You should allways return null in case of not existing given point (param), even if you have only a single one vertex on your array (as this case).");
+                        if(checkCorrectness("Polygon.getNextVertex", null, polyWith1.getNextVertex(new Point(3, 5)), "You should allways return null in case of not existing given point (param), even if you have only a single one vertex on your array (as this case)."))
+                            getNextVertexIsCorrect = true;
     
         // getBoundingBox
         errTip = toStringIsCorrect
             ? "You have to find the most outer vertex from each side and use their X and Y to create a new polygon with 4 vertices in the required order. (BottomLeft, BottomRight, TopRight, TopLeft)"
             : "Check your toString method first!";
+        boolean getBoundingBoxIsCorrect = false;
         if (checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,2.0),(9.0,2.0),(9.0,8.0),(1.0,8.0))", toStringOrNull(fullPoly.getBoundingBox()), errTip))
             if (checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,3.0),(3.0,3.0),(3.0,7.0),(1.0,7.0))", toStringOrNull(polyWith3.getBoundingBox()), errTip))
                 if (checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,4.0),(6.0,4.0),(6.0,8.0),(1.0,8.0))", toStringOrNull(polyWith6.getBoundingBox()), errTip))
                     if (checkCorrectness("Polygon.getBoundingBox", null, polyWith2.getBoundingBox(), "You have to return null if you have less than 3 points on the _vertices array."))
-                        checkCorrectness("Polygon.getBoundingBox", null, polyWith1.getBoundingBox(), "You have to return null if you have less than 3 points on the _vertices array.");
+                        if (checkCorrectness("Polygon.getBoundingBox", null, polyWith1.getBoundingBox(), "You have to return null if you have less than 3 points on the _vertices array."))
+                            getBoundingBoxIsCorrect = true;
         //#endregion
 
         //#region Check aliasing
         boolean wasNotCloned = polyWith6.highestVertex() == polyWith6.highestVertex() || polyWith3.highestVertex() == polyWith3.highestVertex() || fullPoly.highestVertex() == fullPoly.highestVertex();
-        checkCorrectness("Polygon.highestVertex aliasing", false, wasNotCloned, "Alias was returned, USE THE COPY CONSTRUCTOR OF THE POINT!");
+        if (highestVertexIsCorrect) checkCorrectness("Polygon.highestVertex aliasing", false, wasNotCloned, "Alias was returned, USE THE COPY CONSTRUCTOR OF THE POINT!");
 
         Point p = polyWith6.highestVertex();
-        wasNotCloned = polyWith6.getNextVertex(p) == polyWith6.getNextVertex(p) || polyWith3.getNextVertex(p) == polyWith3.getNextVertex(p) || fullPoly.getNextVertex(p) == fullPoly.getNextVertex(p);
-        checkCorrectness("Polygon.getNextVertex aliasing", false, wasNotCloned, "Alias was returned, USE THE COPY CONSTRUCTOR OF THE POINT!");
+        wasNotCloned = polyWith6.getNextVertex(p) == polyWith6.getNextVertex(p);
+        p = polyWith3.highestVertex();
+        wasNotCloned |= polyWith3.getNextVertex(p) == polyWith3.getNextVertex(p);
+        p = fullPoly.highestVertex();
+        wasNotCloned |= fullPoly.getNextVertex(p) == fullPoly.getNextVertex(p);
+        if (getNextVertexIsCorrect) checkCorrectness("Polygon.getNextVertex aliasing", false, wasNotCloned, "Alias was returned, USE THE COPY CONSTRUCTOR OF THE POINT!");
 
         wasNotCloned = polyWith6.getBoundingBox() == polyWith6.getBoundingBox() || polyWith3.getBoundingBox() == polyWith3.getBoundingBox() || fullPoly.getBoundingBox() == fullPoly.getBoundingBox();
-        checkCorrectness("Polygon.getBoundingBox aliasing", false, wasNotCloned, "The same object was returned, YOU HAVE TO RE-CREATE THE BOUNDING BOX!");
+        if (getBoundingBoxIsCorrect) checkCorrectness("Polygon.getBoundingBox aliasing", false, wasNotCloned, "The same object was returned, YOU HAVE TO RE-CREATE THE BOUNDING BOX!");
         //#endregion
 
         // Was error(s) ?
@@ -154,7 +164,12 @@ public class PolygonTester {
     static boolean wasError = false;
     public static boolean checkCorrectness(String testName, Object expected, Object actual, String theTip)
     {
-        boolean isCorrect = expected == actual || expected != null && expected.equals(actual);
+        boolean isCorrect = expected == actual                                  // it's the same instance or both are null
+            || expected != null                                                 // 
+                && (expected instanceof Point                                   // The expected object is type of Point:
+                    ? actual instanceof Point                                   // Also the actual object is type of Point,
+                        && areEquals((Point)expected, (Point)actual)            // Check if these points are equals using my own function to be sure it's correct and because the @override may was not written for the equals method so I can't call it for some reason.
+                    : expected.equals(actual));                                 // 
 
         if (!isCorrect) // incorrect
         {
@@ -164,6 +179,11 @@ public class PolygonTester {
             System.out.println();
         }
         return isCorrect;
+    }
+
+    public static boolean areEquals(Point p1, Point p2)
+    {
+        return p1 == p2 || (p1 != null && p2 != null) && (p1.getX() == p2.getX() && p1.getY() == p2.getY());
     }
 
     public static int addPointsToPolygon(Polygon polygon, double[]... xyArray)
