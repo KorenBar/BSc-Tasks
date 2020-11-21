@@ -2,7 +2,7 @@
  * Tester for task 13 on course no. 20441 (2020)
  * 
  * @author Koren Bar
- * @version 21/11/2020
+ * @version 2020.11.21-2
  */
 public class PolygonTester {
 
@@ -142,12 +142,12 @@ public class PolygonTester {
     static boolean wasError = false;
     public static boolean checkCorrectness(String testName, Object expected, Object actual, String theTip)
     {
-        boolean isCorrect = expected.equals(actual);
+        boolean isCorrect = expected == actual || expected != null && expected.equals(actual);
 
         if (!isCorrect) // incorrect
         {
             wasError = true;
-            System.out.println(String.format("ERROR:  %s  -  EXPECTED: %s  ACTUAL: %s", testName, expected.toString(), actual.toString()));
+            System.out.println(String.format("ERROR:  %s  -  EXPECTED: %s  ACTUAL: %s", testName, expected != null ? expected.toString() : "null", actual != null ? actual.toString() : "null"));
             if (!theTip.isEmpty()) System.out.println("TIP: " + theTip);
             System.out.println();
         }
