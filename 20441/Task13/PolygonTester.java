@@ -2,7 +2,7 @@
  * Tester for task 13 on course no. 20441 (2020)
  * 
  * @author Koren Bar
- * @version 2020.11.21-3
+ * @version 2020.11.21-4
  */
 public class PolygonTester {
 
@@ -72,56 +72,66 @@ public class PolygonTester {
         
         //#region Check methods
         // toString
-        checkCorrectness("Polygon.toString", "The polygon has 5 vertices:\n((6.0,5.0),(5.0,7.0),(3.0,8.0),(1.0,6.0),(2.0,5.0),(4.0,4.0))", polyWith6.toString(), "toString method is incorrect, FIX IT.");
-        checkCorrectness("Polygon.toString", "The polygon has 0 vertices.", emptyPoly.toString(), "toString method is incorrect, FIX IT.");
+        String errTip = "toString method is incorrect, FIX IT!";
+        boolean toStringIsCorrect = false;
+        if (checkCorrectness("Polygon.toString", "The polygon has 5 vertices:\n((6.0,5.0),(5.0,7.0),(3.0,8.0),(1.0,6.0),(2.0,5.0),(4.0,4.0))", polyWith6.toString(), errTip))
+            if(checkCorrectness("Polygon.toString", "The polygon has 0 vertices.", emptyPoly.toString(), "You should return the expected string above if there is no vertices (when the _vertices array is empty)."))
+                toStringIsCorrect = true;
 
         // highestVertex
-        String errTip = "If your Point.equals is correct then check the highestVertex method!";
-        checkCorrectness("Polygon.highestVertex", new Point(3, 8), fullPoly.highestVertex(), errTip);
-        checkCorrectness("Polygon.highestVertex", new Point(3, 7), polyWith3.highestVertex(), errTip);
-        checkCorrectness("Polygon.highestVertex", new Point(5, 8), polyWith6.highestVertex(), errTip);
+        errTip = "If your Point.equals is correct then check your highestVertex method!";
+        if(checkCorrectness("Polygon.highestVertex", new Point(3, 8), fullPoly.highestVertex(), errTip))
+            if(checkCorrectness("Polygon.highestVertex", new Point(3, 7), polyWith3.highestVertex(), errTip))
+                if(checkCorrectness("Polygon.highestVertex", new Point(5, 8), polyWith6.highestVertex(), errTip))
+                    checkCorrectness("Polygon.highestVertex", null, emptyPoly.highestVertex(), "You should return null if there is no vertices (when the _vertices array is empty).");
 
         // calcPerimeter
-        errTip = "CHECK THAT METHOD!";
-        checkCorrectness("Polygon.calcPerimeter", round(22.705481427033433, ROUNGING_DECIMALS), round(fullPoly.calcPerimeter(), ROUNGING_DECIMALS), errTip);
-        checkCorrectness("Polygon.calcPerimeter", round(9.84161925296378, ROUNGING_DECIMALS), round(polyWith3.calcPerimeter(), ROUNGING_DECIMALS), errTip);
-        checkCorrectness("Polygon.calcPerimeter", round(13.877054302287245, ROUNGING_DECIMALS), round(polyWith6.calcPerimeter(), ROUNGING_DECIMALS), errTip);
+        errTip = "CHECK THAT METHOD! (Check this tester also :p)";
+        if(checkCorrectness("Polygon.calcPerimeter", round(22.705481427033433, ROUNGING_DECIMALS), round(fullPoly.calcPerimeter(), ROUNGING_DECIMALS), errTip))
+            if(checkCorrectness("Polygon.calcPerimeter", round(9.84161925296378, ROUNGING_DECIMALS), round(polyWith3.calcPerimeter(), ROUNGING_DECIMALS), errTip))
+                checkCorrectness("Polygon.calcPerimeter", round(13.877054302287245, ROUNGING_DECIMALS), round(polyWith6.calcPerimeter(), ROUNGING_DECIMALS), errTip);
 
         // calcArea
-        errTip = "CHECK THAT METHOD!";
-        checkCorrectness("Polygon.calcArea", 37.0, fullPoly.calcArea(), errTip);
-        checkCorrectness("Polygon.calcArea", 0.0, polyWith1.calcArea(), errTip);
-        checkCorrectness("Polygon.calcArea", 0.0, polyWith2.calcArea(), errTip);
-        checkCorrectness("Polygon.calcArea", 4.0, polyWith3.calcArea(), errTip);
-        checkCorrectness("Polygon.calcArea", 13.0, polyWith6.calcArea(), errTip);
+        errTip = "CHECK THAT METHOD! (Check this tester also :p)";
+        boolean calcAreaIsCorrect = false;
+        if(checkCorrectness("Polygon.calcArea", 37.0, fullPoly.calcArea(), errTip))
+            if(checkCorrectness("Polygon.calcArea", 0.0, polyWith1.calcArea(), errTip))
+                if(checkCorrectness("Polygon.calcArea", 0.0, polyWith2.calcArea(), errTip))
+                    if(checkCorrectness("Polygon.calcArea", 4.0, polyWith3.calcArea(), errTip))
+                        if(checkCorrectness("Polygon.calcArea", 13.0, polyWith6.calcArea(), errTip))
+                            calcAreaIsCorrect = true;
 
         // isBigger
-        errTip = "CHECK THAT METHOD!";
-        checkCorrectness("Polygon.isBigger", true, fullPoly.isBigger(polyWith6), errTip);
-        checkCorrectness("Polygon.isBigger", false, polyWith3.isBigger(polyWith6), errTip);
-        checkCorrectness("Polygon.isBigger", true, polyWith6.isBigger(polyWith3), errTip);
+        errTip = calcAreaIsCorrect 
+            ? "Did you used the calcArea on that method? (you need to)"
+            : "Fix your calcArea method first!";
+        if(checkCorrectness("Polygon.isBigger", true, fullPoly.isBigger(polyWith6), errTip))
+            if(checkCorrectness("Polygon.isBigger", false, polyWith3.isBigger(polyWith6), errTip))
+                checkCorrectness("Polygon.isBigger", true, polyWith6.isBigger(polyWith3), errTip);
 
         // findVertex
         errTip = "If your Point.equals is correct then check the findVertex method!";
-        checkCorrectness("Polygon.findVertex", 7, fullPoly.findVertex(new Point(5, 2)), errTip);
-        checkCorrectness("Polygon.findVertex", -1, polyWith3.findVertex(new Point(0, 0)), errTip);
-        checkCorrectness("Polygon.findVertex", 5, polyWith6.findVertex(new Point(4, 4)), errTip);
+        if(checkCorrectness("Polygon.findVertex", 7, fullPoly.findVertex(new Point(5, 2)), errTip))
+            if(checkCorrectness("Polygon.findVertex", 5, polyWith6.findVertex(new Point(4, 4)), errTip))
+                checkCorrectness("Polygon.findVertex", -1, polyWith3.findVertex(new Point(0, 0)), "You have to return -1 if the given point parameter doesn't exists.");
 
         // getNextVertex
         errTip = "If your Point.equals is correct then check the getNextVertex method!";
-        checkCorrectness("Polygon.getNextVertex", new Point(2, 3), fullPoly.getNextVertex(new Point(5, 2)), errTip);
-        checkCorrectness("Polygon.getNextVertex", null, polyWith3.getNextVertex(new Point(0, 0)), errTip);
-        checkCorrectness("Polygon.getNextVertex", new Point(6, 5), polyWith6.getNextVertex(new Point(4, 4)), errTip);
-        checkCorrectness("Polygon.getNextVertex", new Point(3, 9), polyWith1.getNextVertex(new Point(3, 9)), errTip);
+        if (checkCorrectness("Polygon.getNextVertex", new Point(2, 3), fullPoly.getNextVertex(new Point(5, 2)), "If your Point.equals is correct then check the getNextVertex method!"))
+            if (checkCorrectness("Polygon.getNextVertex", null, polyWith3.getNextVertex(new Point(0, 0)), "You should return null in case of not existing given point parameter."))
+                if (checkCorrectness("Polygon.getNextVertex", new Point(6, 5), polyWith6.getNextVertex(new Point(4, 4)), errTip))
+                    if (checkCorrectness("Polygon.getNextVertex", new Point(3, 9), polyWith1.getNextVertex(new Point(3, 9)), errTip))
+                        checkCorrectness("Polygon.getNextVertex", null, polyWith1.getNextVertex(new Point(3, 5)), "You should allways return null in case of not existing given point (param), even if you have only a single one vertex on your array (as this case).");
     
         // getBoundingBox
-        errTip = "If the Polygon.toString mehtod is correct then check the getBoundingBox method!"
-            + "\nnote that you have to find the most outer vertex from each side and use their X and Y to create a new polygon with 4 vertices in the required order. (BottomLeft, BottomRight, TopRight, TopLeft)";
-        checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,2.0),(9.0,2.0),(9.0,8.0),(1.0,8.0))", fullPoly.getBoundingBox().toString(), errTip);
-        checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,3.0),(3.0,3.0),(3.0,7.0),(1.0,7.0))", polyWith3.getBoundingBox().toString(), errTip);
-        checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,4.0),(6.0,4.0),(6.0,8.0),(1.0,8.0))", polyWith6.getBoundingBox().toString(), errTip);
-        checkCorrectness("Polygon.getBoundingBox", null, polyWith2.getBoundingBox(), errTip);
-        checkCorrectness("Polygon.getBoundingBox", null, polyWith1.getBoundingBox(), errTip);
+        errTip = toStringIsCorrect
+            ? "You have to find the most outer vertex from each side and use their X and Y to create a new polygon with 4 vertices in the required order. (BottomLeft, BottomRight, TopRight, TopLeft)"
+            : "Check your toString method first!";
+        if (checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,2.0),(9.0,2.0),(9.0,8.0),(1.0,8.0))", toStringOrNull(fullPoly.getBoundingBox()), errTip))
+            if (checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,3.0),(3.0,3.0),(3.0,7.0),(1.0,7.0))", toStringOrNull(polyWith3.getBoundingBox()), errTip))
+                if (checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,4.0),(6.0,4.0),(6.0,8.0),(1.0,8.0))", toStringOrNull(polyWith6.getBoundingBox()), errTip))
+                    if (checkCorrectness("Polygon.getBoundingBox", null, polyWith2.getBoundingBox(), "You have to return null if you have less than 3 points on the _vertices array."))
+                        checkCorrectness("Polygon.getBoundingBox", null, polyWith1.getBoundingBox(), "You have to return null if you have less than 3 points on the _vertices array.");
         //#endregion
 
         //#region Check aliasing
@@ -176,5 +186,10 @@ public class PolygonTester {
         double roundedRest = Math.round(rest * template) / template;
 
         return integer + roundedRest;
+    }
+
+    private static String toStringOrNull(Object obj)
+    {
+        return obj != null ? obj.toString() : null;
     }
 }
