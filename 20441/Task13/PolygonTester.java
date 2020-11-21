@@ -2,6 +2,7 @@
  * Tester for task 13 on course no. 20441 (2020)
  * 
  * @author Koren Bar
+ * @version 21/11/2020
  */
 public class PolygonTester {
 
@@ -112,11 +113,11 @@ public class PolygonTester {
         checkCorrectness("Polygon.getNextVertex", new Point(3, 9), polyWith1.getNextVertex(new Point(3, 9)), errTip);
     
         // getBoundingBox
-        errTip = "CHECK THAT METHOD!";
-        // TODO
-        //checkCorrectness("Polygon.getBoundingBox", , fullPoly.getBoundingBox(), errTip);
-        //checkCorrectness("Polygon.getBoundingBox", , polyWith3.getBoundingBox(), errTip);
-        //checkCorrectness("Polygon.getBoundingBox", , polyWith6.getBoundingBox(), errTip);
+        errTip = "If the Polygon.toString mehtod is correct then check the getBoundingBox method!"
+            + "\nnote that you have to find the most outer vertex from each side and use their X and Y to create a new polygon with 4 vertices in the required order. (BottomLeft, BottomRight, TopRight, TopLeft)";
+        checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,2.0),(9.0,2.0),(9.0,8.0),(1.0,8.0))", fullPoly.getBoundingBox().toString(), errTip);
+        checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,3.0),(3.0,3.0),(3.0,7.0),(1.0,7.0))", polyWith3.getBoundingBox().toString(), errTip);
+        checkCorrectness("Polygon.getBoundingBox", "The polygon has 4 vertices:\n((1.0,4.0),(6.0,4.0),(6.0,8.0),(1.0,8.0))", polyWith6.getBoundingBox().toString(), errTip);
         checkCorrectness("Polygon.getBoundingBox", null, polyWith2.getBoundingBox(), errTip);
         checkCorrectness("Polygon.getBoundingBox", null, polyWith1.getBoundingBox(), errTip);
         //#endregion
