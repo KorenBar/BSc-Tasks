@@ -2,7 +2,7 @@
  * Tester for task 13 on course no. 20441 (2020)
  * 
  * @author Koren Bar
- * @version 2020.11.21-2
+ * @version 2020.11.21-3
  */
 public class PolygonTester {
 
@@ -90,6 +90,8 @@ public class PolygonTester {
         // calcArea
         errTip = "CHECK THAT METHOD!";
         checkCorrectness("Polygon.calcArea", 37.0, fullPoly.calcArea(), errTip);
+        checkCorrectness("Polygon.calcArea", 0.0, polyWith1.calcArea(), errTip);
+        checkCorrectness("Polygon.calcArea", 0.0, polyWith2.calcArea(), errTip);
         checkCorrectness("Polygon.calcArea", 4.0, polyWith3.calcArea(), errTip);
         checkCorrectness("Polygon.calcArea", 13.0, polyWith6.calcArea(), errTip);
 
