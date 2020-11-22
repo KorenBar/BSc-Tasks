@@ -2,14 +2,14 @@
  * Tester for task 13 on course no. 20441 (2020)
  * 
  * @author Koren Bar
- * @version 2020.11.21-5
+ * @version 2020.11.22
  */
 public class PolygonTester {
 
+    final static int ROUNGING_DECIMALS = 10; // no more than 15
+
     public static void main(String[] args)
     {
-        final int ROUNGING_DECIMALS = 10; // no more than 15
-
         //#region Print information
         System.out.println("***                       טסטר זה אינו רשמי ואינו תחליף לטסטר הרשמי                         ***");
         System.out.println("***             This tester is not official and isn't substitute for the official              ***\n");
@@ -88,19 +88,19 @@ public class PolygonTester {
                         highestVertexIsCorrect = true;
 
         // calcPerimeter
-        errTip = "CHECK THAT METHOD! (Check this tester also :p)";
-        if(checkCorrectness("Polygon.calcPerimeter", round(22.705481427033433, ROUNGING_DECIMALS), round(fullPoly.calcPerimeter(), ROUNGING_DECIMALS), errTip))
-            if(checkCorrectness("Polygon.calcPerimeter", round(9.84161925296378, ROUNGING_DECIMALS), round(polyWith3.calcPerimeter(), ROUNGING_DECIMALS), errTip))
-                checkCorrectness("Polygon.calcPerimeter", round(13.877054302287245, ROUNGING_DECIMALS), round(polyWith6.calcPerimeter(), ROUNGING_DECIMALS), errTip);
+        errTip = "CHECK THAT METHOD!";
+        if(checkCorrectness("Polygon.calcPerimeter", round(22.705481427033433), round(fullPoly.calcPerimeter()), errTip))
+            if(checkCorrectness("Polygon.calcPerimeter", round(9.84161925296378), round(polyWith3.calcPerimeter()), errTip))
+                checkCorrectness("Polygon.calcPerimeter", round(13.877054302287245), round(polyWith6.calcPerimeter()), errTip);
 
         // calcArea
-        errTip = "CHECK THAT METHOD! (Check this tester also :p)";
+        errTip = "CHECK THAT METHOD!";
         boolean calcAreaIsCorrect = false;
-        if(checkCorrectness("Polygon.calcArea", 37.0, fullPoly.calcArea(), errTip))
-            if(checkCorrectness("Polygon.calcArea", 0.0, polyWith1.calcArea(), errTip))
-                if(checkCorrectness("Polygon.calcArea", 0.0, polyWith2.calcArea(), errTip))
-                    if(checkCorrectness("Polygon.calcArea", 4.0, polyWith3.calcArea(), errTip))
-                        if(checkCorrectness("Polygon.calcArea", 13.0, polyWith6.calcArea(), errTip))
+        if(checkCorrectness("Polygon.calcArea", round(37.0), round(fullPoly.calcArea()), errTip))
+            if(checkCorrectness("Polygon.calcArea", round(0.0), round(polyWith1.calcArea()), errTip))
+                if(checkCorrectness("Polygon.calcArea", round(0.0), round(polyWith2.calcArea()), errTip))
+                    if(checkCorrectness("Polygon.calcArea", round(4.0), round(polyWith3.calcArea()), errTip))
+                        if(checkCorrectness("Polygon.calcArea", round(13.0), round(polyWith6.calcArea()), errTip))
                             calcAreaIsCorrect = true;
 
         // isBigger
@@ -198,6 +198,7 @@ public class PolygonTester {
         return added;
     }
 
+    public static double round(double num) { return round(num, ROUNGING_DECIMALS); }
     public static double round(double num, int decimals)
     {   // Separating the integer and the decimal in order to prevent variables size limitation problems.
         double template = Math.pow(10, decimals);
