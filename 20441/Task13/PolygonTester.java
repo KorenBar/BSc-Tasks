@@ -91,7 +91,8 @@ public class PolygonTester {
         errTip = "CHECK THAT METHOD!";
         if(checkCorrectness("Polygon.calcPerimeter", round(22.705481427033433), round(fullPoly.calcPerimeter()), errTip))
             if(checkCorrectness("Polygon.calcPerimeter", round(9.84161925296378), round(polyWith3.calcPerimeter()), errTip))
-                checkCorrectness("Polygon.calcPerimeter", round(13.877054302287245), round(polyWith6.calcPerimeter()), errTip);
+                if(checkCorrectness("Polygon.calcPerimeter", round(13.877054302287245), round(polyWith6.calcPerimeter()), errTip))
+                    checkCorrectness("Polygon.calcPerimeter", round(3.1622776602), round(polyWith2.calcPerimeter()), "If there are only two vertices you should return the distance between them.");
 
         // calcArea
         errTip = "CHECK THAT METHOD!";
