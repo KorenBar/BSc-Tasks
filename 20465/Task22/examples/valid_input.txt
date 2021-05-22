@@ -1,0 +1,46 @@
+read_set SETA, 1, 4 ,8 , 8, 99, 127, 4,0,1,-1
+print_set SETA
+read_set SETF, 1, 5 ,7 , 8, 99, 127, 4,0,1,-1
+print_set SETF
+union_set SETA, SETF, SETC
+print_set SETC
+union_set SETA, SETF, SETF
+print_set SETF
+union_set SETC, SETF, SETA
+print_set SETA
+
+read_set SETA, 1, 4 ,8 , 8, 99, 127, 4,0,1,-1
+print_set SETA
+read_set SETF, 1, 5 ,7 , 8, 99, 127, 4,0,1,-1
+print_set SETF
+intersect_set SETA, SETF, SETC
+print_set SETC
+intersect_set SETA, SETF, SETF
+print_set SETF
+intersect_set SETC, SETF, SETA
+print_set SETA
+
+read_set SETA, 1, 4 ,8 , 8, 99, 127, 4,0,1,-1
+print_set SETA
+read_set SETF, 1, 5 ,7 , 8, 99, 127, 4,0,1,-1
+print_set SETF
+sub_set SETF, SETA, SETC
+print_set SETC
+sub_set SETA, SETF, SETF
+print_set SETF
+sub_set SETC, SETF, SETA
+print_set SETA
+
+read_set SETA, 1, 4 ,8 , 8, 99, 127, 9,94,0,1,-1
+print_set SETA
+read_set SETF, 1, 5 ,7 , 8, 99, 127, 4,0,1,-1
+print_set SETF
+symdiff_set SETA, SETF, SETC
+print_set SETC
+symdiff_set SETA, SETF, SETF
+print_set SETF
+symdiff_set SETC, SETF, SETA
+print_set SETA
+
+stop
+

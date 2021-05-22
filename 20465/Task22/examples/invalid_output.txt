@@ -1,0 +1,30 @@
+Undefined set name "SETG"
+
+Undefined set name "setA"
+
+Undefined command name
+
+Undefined command name
+
+Invalid value parameter: "567" is out of range
+
+List of set members is not terminated correctly
+
+Invalid value parameter: "-3" is not a positive integer
+
+Invalid value parameter: "xyz" is not a positive integer
+
+Invalid value parameter: "24.0" is not a positive integer
+
+Missing set name parameter
+
+Unnecessary comma
+
+Extraneous text after end of command
+
+Unnecessary comma
+
+Unnecessary space or missing comma
+
+Illegal comma
+
