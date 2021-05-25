@@ -36,7 +36,7 @@ void print_set(set s)
 
     if (is_empty_set(s))
     {
-        printf("The set is empty\n\n");
+        printf("The set is empty\n");
         return;
     }
 
@@ -52,7 +52,7 @@ void print_set(set s)
             }
         }
 
-    printf("\n\n");
+    printf("\n");
 }
 
 byte operate_bytes(byte s1, byte s2, operation op)

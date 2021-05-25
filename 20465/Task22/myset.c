@@ -36,6 +36,9 @@ bool handle_command(command* cmd)
 
     if (cmd == NULL) return true;
 
+    /* before handling that command, print it as is */
+    print_command(cmd);
+
     values = NULL;
     set_to_free = NULL;
     c = cmd2enum(cmd->command);
@@ -68,6 +71,8 @@ bool handle_command(command* cmd)
             }
         }
     }
+
+    printf("\n");
 
     /* free memory */
     if (set_to_free != NULL) free_set(set_to_free);

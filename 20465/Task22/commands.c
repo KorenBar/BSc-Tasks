@@ -55,6 +55,8 @@ command* read_command()
         return NULL;
     }
 
+    printf("Please write a command:\n");
+
     while (isspace(c = getchar())); /* skip spaces */
 
     /* get command name */
@@ -101,6 +103,24 @@ command* read_command()
 
     free_buffer(buff);
     return cmd;
+}
+
+void print_command(command* cmd)
+{
+    int i;
+
+    if (cmd == NULL) return;
+
+    if (cmd->command != NULL)
+        printf("%s ", cmd->command);
+
+    for (i = 0; i < cmd->params_count - 1; i++)
+        printf("%s, ", cmd->params[i]);
+
+    if (i < cmd->params_count) /* print the last param */
+        printf("%s", cmd->params[i]);
+
+    printf("\n");
 }
 
 void free_command(command* cmd)

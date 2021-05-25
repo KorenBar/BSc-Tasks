@@ -1,40 +1,143 @@
+Please write a command:
+read_set SETA, 1, 4, 8, 8, 99, 127, 4, 0, 1, -1
+
+Please write a command:
+print_set SETA
 0, 1, 4, 8, 99, 127
 
+Please write a command:
+read_set SETF, 1, 5, 7, 8, 99, 127, 4, 0, 1, -1
+
+Please write a command:
+print_set SETF
 0, 1, 4, 5, 7, 8, 99, 127
 
+Please write a command:
+union_set SETA, SETF, SETC
+
+Please write a command:
+print_set SETC
 0, 1, 4, 5, 7, 8, 99, 127
 
+Please write a command:
+union_set SETA, SETF, SETF
+
+Please write a command:
+print_set SETF
 0, 1, 4, 5, 7, 8, 99, 127
 
+Please write a command:
+union_set SETC, SETF, SETA
+
+Please write a command:
+print_set SETA
 0, 1, 4, 5, 7, 8, 99, 127
 
+Please write a command:
+read_set SETA, 1, 4, 8, 8, 99, 127, 4, 0, 1, -1
+
+Please write a command:
+print_set SETA
 0, 1, 4, 8, 99, 127
 
+Please write a command:
+read_set SETF, 1, 5, 7, 8, 99, 127, 4, 0, 1, -1
+
+Please write a command:
+print_set SETF
 0, 1, 4, 5, 7, 8, 99, 127
 
+Please write a command:
+intersect_set SETA, SETF, SETC
+
+Please write a command:
+print_set SETC
 0, 1, 4, 8, 99, 127
 
+Please write a command:
+intersect_set SETA, SETF, SETF
+
+Please write a command:
+print_set SETF
 0, 1, 4, 8, 99, 127
 
+Please write a command:
+intersect_set SETC, SETF, SETA
+
+Please write a command:
+print_set SETA
 0, 1, 4, 8, 99, 127
 
+Please write a command:
+read_set SETA, 1, 4, 8, 8, 99, 127, 4, 0, 1, -1
+
+Please write a command:
+print_set SETA
 0, 1, 4, 8, 99, 127
 
+Please write a command:
+read_set SETF, 1, 5, 7, 8, 99, 127, 4, 0, 1, -1
+
+Please write a command:
+print_set SETF
 0, 1, 4, 5, 7, 8, 99, 127
 
+Please write a command:
+sub_set SETF, SETA, SETC
+
+Please write a command:
+print_set SETC
 5, 7
 
+Please write a command:
+sub_set SETA, SETF, SETF
+
+Please write a command:
+print_set SETF
 The set is empty
 
+Please write a command:
+sub_set SETC, SETF, SETA
+
+Please write a command:
+print_set SETA
 5, 7
 
+Please write a command:
+read_set SETA, 1, 4, 8, 8, 99, 127, 9, 94, 0, 1, -1
+
+Please write a command:
+print_set SETA
 0, 1, 4, 8, 9, 94, 99, 127
 
+Please write a command:
+read_set SETF, 1, 5, 7, 8, 99, 127, 4, 0, 1, -1
+
+Please write a command:
+print_set SETF
 0, 1, 4, 5, 7, 8, 99, 127
 
+Please write a command:
+symdiff_set SETA, SETF, SETC
+
+Please write a command:
+print_set SETC
 5, 7, 9, 94
 
+Please write a command:
+symdiff_set SETA, SETF, SETF
+
+Please write a command:
+print_set SETF
 5, 7, 9, 94
 
+Please write a command:
+symdiff_set SETC, SETF, SETA
+
+Please write a command:
+print_set SETA
 The set is empty
+
+Please write a command:
+stop 
 

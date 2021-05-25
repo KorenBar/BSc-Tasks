@@ -20,3 +20,4 @@ void free_command(command* cmd);
 bool add_param(command* cmd, char *str);
 /* read a command from the standard input */
 command* read_command();
+void print_command(command* cmd);

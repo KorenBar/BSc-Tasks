@@ -1,30 +1,78 @@
+Please write a command:
+read_set SETG, 3, 6, 5, 4, 4, -1
 Undefined set name "SETG"
 
+
+Please write a command:
+read_set setA, 3, 6, 5, 4, 4, -1
 Undefined set name "setA"
 
+
+Please write a command:
+do_it SETA, SETB, SETC
 Undefined command name
 
+
+Please write a command:
+UNION_set SETA, SETB, SETC
 Undefined command name
 
+
+Please write a command:
+read_set SETB, 45, 567, 34, -1
 Invalid value parameter: "567" is out of range
 
+
+Please write a command:
+read_set SETA, 45, 56, 45, 34
 List of set members is not terminated correctly
 
+
+Please write a command:
+read_set SETA, 45, -3, 2, 45, 34, -1
 Invalid value parameter: "-3" is not a positive integer
 
+
+Please write a command:
+read_set SETA, 45, 2, xyz, 34, -1
 Invalid value parameter: "xyz" is not a positive integer
 
+
+Please write a command:
+read_set SETA, 45, 2, 24.0, 34, -1
 Invalid value parameter: "24.0" is not a positive integer
 
+
+Please write a command:
+union_set SETC, SETA
 Missing set name parameter
 
+
+Please write a command:
+union_set SETC, SETA, SETB, 
 Unnecessary comma
 
+
+Please write a command:
+print_set SETC, SETD
 Extraneous text after end of command
 
+
+Please write a command:
+sub_set SETF, , SETD, SETA
 Unnecessary comma
 
+
+Please write a command:
+intersect_set SETF SETD SETA
 Unnecessary space or missing comma
 
+
+Please write a command:
+symdiff_set, SETF, SETB, SETA
 Illegal comma
+
+
+Please write a command:
+stop 
 
